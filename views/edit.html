@@ -1,0 +1,161 @@
+{{include "layouts/header"}}
+        <!-- page content -->
+        <div class="right_col" role="main">
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+						  <h2>{{.service.Id}} <small>edit service</small><font color="red">{{ .error }}</font></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left" action="/edit" method="post">
+                      <div class="form-group row">
+                        <label class="control-label col-md-3 col-sm-3 ">Service id </label>
+                        <div class="col-md-9 col-sm-9 ">
+                          <input type="text" name="id" class="form-control" disabled="disabled" placeholder="{{.service.Id}}" value="{{.service.Id}}">
+                          <input type="hidden" name="id" value="{{.service.Id}}">
+                        </div>
+                      </div>
+
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Name</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text" name="name" class="form-control" placeholder="Service Name" value="{{.service.Name}}">
+                        </div>
+                      </div>
+
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">State (live,deprecated,develope)</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text" name="status" class="form-control" placeholder="Live" value="{{.service.Status}}">
+                        </div>
+                      </div>
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Type</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text" name="type" class="form-control" placeholder="k8s" value="{{.service.Type}}">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+					  <label class="control-label col-md-3 col-sm-3 ">Level</label>
+                        <div class="col-md-9 col-sm-9 ">
+                          <select class="form-control" name="level">
+                            <option>P1</option>
+                            <option>P2</option>
+                            <option>P3</option>
+                          </select>
+                        </div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">what levels means</a>
+                      </div>
+                      <div class="form-group row">
+					  <label class="control-label col-md-3 col-sm-3 ">Team</label>
+                        <div class="col-md-9 col-sm-9 ">
+                          <select class="form-control" name="team">
+                            <option>--------</option>
+							{{range $i, $v := .teams}}
+							<option value="{{ $v }}" {{ if eq $.service.Team $v }} selected  {{end}}>{{$v}}</option>
+							{{ end }}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+					  <label class="control-label col-md-3 col-sm-3 ">Product</label>
+                        <div class="col-md-9 col-sm-9 ">
+                          <select class="form-control" name="product">
+                            <option>--------</option>
+							{{range $i, $v := .products}}
+							<option value="{{$v}}" {{if eq $v $.service.Product}} selected  {{end}}>{{$v}}</option>
+							{{ end }}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Documentation URL</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text"  class="form-control" placeholder="https://inspectoriodocs..." name="docurl" value="{{.service.DocUrl}}">
+                        </div>
+                      </div>
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Source version control</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text" class="form-control" placeholder="https://gitlab..." name="svcurl" value="{{.service.SvcUrl}}">
+                        </div>
+                      </div>
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Sentry ids (comma seprated)</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text"  class="form-control" placeholder="0" name="sentry_id" value="{{.service.Sentry_id}}">
+                        </div>
+                      </div>
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">Newrelic ids</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text"  class="form-control" placeholder="0" name="newrelic_id" value="{{.service.Newrelic_id}}">
+                        </div>
+                      </div>
+                      <div class="form-group row ">
+                        <label class="control-label col-md-3 col-sm-3 ">DashBoard URL</label>
+                        <div class="col-md-9 col-sm-9 ">
+								<input type="text"  class="form-control" placeholder="http://" name=dashboardurl value="{{.service.DashboardUrl}}">
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9  offset-md-3">
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../static/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+   <script src="../static/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../static/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../static/vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../static/vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../static/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../static/vendors/pdfma/build/pdfmake.min.js"></script>
+    <script src="../static/vendors/pdfma/build/vfs_fonts.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../static/build/js/custom.min.js"></script>
+
+  </body>
+</html>
