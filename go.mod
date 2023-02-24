@@ -12,9 +12,9 @@ require (
 	github.com/labstack/gommon v0.3.0 // indirect
 	github.com/lib/pq v1.3.0
 	github.com/pquerna/cachecontrol v0.0.0-20180517163645-1555304b9b35 // indirect
+	github.com/smartystreets/goconvey v1.7.2 // indirect
 	github.com/valyala/fasttemplate v1.1.0 // indirect
-	golang.org/x/lint v0.0.0-20191125180803-fdd1cda4f05f // indirect
-	golang.org/x/net v0.0.0-20200114155413-6afb5195e5aa
+	golang.org/x/net v0.7.0
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	gopkg.in/square/go-jose.v2 v2.4.1 // indirect
 )
